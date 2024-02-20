@@ -4,6 +4,24 @@ const PORT = 3001;
 
 const server = new Application();
 
+server.use(async (context, next) => {
+	await next();
+
+	const responseTime = context.response.headers.get('X-Response-Time');
+
+	console.log(`${context.request.method} ${context.request.url} ${responseTime}`);
+});
+
+server.use(async (context, next) => {
+	const now = Date.now();
+
+	await next();
+
+	const difference = Date.now() - now;
+
+	context.response.headers.set('X-Response-Time', `${difference}ms`);
+});
+
 server.use(context => {
 	context.response.body = 'Hello, World!';
 });
