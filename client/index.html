@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='UTF-8' />
+		<title>Space-Mission--Control (Deno)</title>
+		<link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+		<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap' />
+		<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css2?family=Space+Mono&display=swap' />
+		<link rel='stylesheet' type='text/css' href='style.css' />
+	</head>
+	<body>
+		<div id='top-content'>
+			<header>
+				<div>
+					<h1 class='title-global'><a onclick='navigate("launch")'>Space-Mission--Control (Deno)</a></h1>
+					<nav>
+						<ul>
+							<li><a onclick='navigate("launch")'>[Launch]</a></li>
+							<li><a onclick='navigate("upComing")'>[UpComing]</a></li>
+							<li><a onclick='navigate("history")'>[History]</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div>
+					<h1 class='title-event'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='title-event-wrap'>:N:O:</span><a href='https://deno.land' target='_blank'>D:E:N:O</a><span class='title-event-wrap'>:</span></h1>
+				</div>
+			</header>
+			<aside>
+				<div id='sponsor'>
+					<div class='quiet'>We Are Going InterStellar!</div>
+					<div class='sponsor'>In PartnerShip with National AeuroNautics and Space Administration (NASA) and SpaceX, we are Advancing Technology to Explore Planets BeYond our Solar-System</div>
+				</div>
+			</aside>
+			<main>
+				<article id='launch'>
+					<p>Schedule a Mission-Launch for InterStellar-Travel to One of the Kepler-ExoPlanets</p>
+					<p>Only Confirmed Planets Matching the Following Criteria are AvailAble for the Earliest-Scheduled Missions:
+						<ul>
+							<li>1M☉ (Solar-Mass) ±10%</li>
+							<li>1R☉ (Solar-Radius) ±10%</li>
+						</ul>
+					</p>
+					<form>
+						<div class='form-item'>
+							<label>Launch-Date</label>
+							<input type='date' id='launch-day' max='2099-12-31' />
+						</div>
+						<div class='form-item'>
+							<label>Mission-Name</label>
+							<input type='text' id='mission-name' />
+						</div>
+						<div class='form-item'>
+							<label>Rocket-Type</label>
+							<input type='text' id='rocket-name' value='Experimental IS1' disabled />
+						</div>
+						<div class='form-item'>
+							<label>Destination-ExoPlanet</label>
+							<select id='planets-selector'></select>
+						</div>
+						<a class='submit' onclick='submitLaunch()'>[Launch ✔]</a>
+					</form>
+					<p id='launch-success' hidden>Congratulations! InterStellar-Launch Scheduled</p>
+				</article>
+				<article id='history' hidden>
+					<p>History of Mission-Launches (Including SpaceX-Launches) Starting from 2006</p>
+					<div id='history-list'></div>
+				</article>
+				<article id='upComing' hidden>
+					<p>UpComing Missions of Both SpaceX-Launches and Newly-Scheduled Rockets</p>
+					<p>Warning: Clicking on <span class='delete'>✖</span> Aborts the Mission!</p>
+					<div id='upcoming-list'></div>
+				</article>
+			</main>
+		</div>
+		<footer class='quiet'>
+			This Is Not An Official Site And Is Not Affiliated With NASA or SpaceX In Any Way. For Educational Purposes Only
+		</footer>
+		<script src='script.js'></script>
+	</body>
+</html>
