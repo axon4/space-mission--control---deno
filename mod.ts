@@ -24,6 +24,7 @@ server.use(async (context, next) => {
 });
 
 server.use(router.routes());
+server.use(router.allowedMethods());
 
 server.use(async context => {
 	const path = context.request.url.pathname;
