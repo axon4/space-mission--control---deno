@@ -1,5 +1,5 @@
-import * as log from 'https://deno.land/std@0.95.0/log/mod.ts';
-import { assertEquals, assertNotEquals } from 'https://deno.land/std@0.60.0/testing/asserts.ts';
+import { log } from './dependencies.ts'
+import { assertEquals, assertNotEquals } from './testDependencies.ts';
 
 Deno.test('shorthand', () => {
 	log.info('shorthand');

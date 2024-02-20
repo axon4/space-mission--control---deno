@@ -1,4 +1,4 @@
-import { Router } from 'https://deno.land/x/oak@v5.0.0/mod.ts';
+import { Router } from './dependencies.ts';
 import { getPlanets } from './planets.ts';
 import { abortLaunch, getLaunch, getLaunches, scheduleLaunch } from './launches.ts';
 

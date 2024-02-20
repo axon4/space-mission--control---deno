@@ -1,8 +1,4 @@
-import * as log from 'https://deno.land/std@0.95.0/log/mod.ts';
-import { join } from 'https://deno.land/std@0.95.0/path/mod.ts';
-import { parse } from 'https://deno.land/std@0.95.0/encoding/csv.ts';
-import { BufReader } from 'https://deno.land/std@0.95.0/io/bufio.ts';
-import { pick } from 'https://deno.land/x/lodash@4.17.15-es/lodash.js';
+import { BufReader, join, log, parse, pick } from './dependencies.ts';
 
 type Planet = Record<string, string>;
 

@@ -1,5 +1,4 @@
-import * as log from 'https://deno.land/std@0.95.0/log/mod.ts';
-import { Application, send } from 'https://deno.land/x/oak@v5.0.0/mod.ts';
+import { Application, log, send } from './dependencies.ts';
 import router from './router.ts';
 
 const PORT = 3001;
