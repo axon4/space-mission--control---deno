@@ -35,6 +35,7 @@ footer {
 	width: 100%;
 	height: 2.5rem;
 	font-size: 13pt;
+	display: grid;
 }
 
 a {
@@ -45,6 +46,10 @@ a {
 a:hover, a:focus {
 	color: #A0C1E6;
 	cursor: pointer;
+}
+
+footer > a {
+	justify-self: center;
 }
 
 h1, h2 {
