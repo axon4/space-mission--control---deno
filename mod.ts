@@ -1,4 +1,4 @@
-import { Application } from 'https://deno.land/x/oak@v5.0.0/mod.ts';
+import { Application, send } from 'https://deno.land/x/oak@v5.0.0/mod.ts';
 
 const PORT = 3001;
 
@@ -20,6 +20,17 @@ server.use(async (context, next) => {
 	const difference = Date.now() - now;
 
 	context.response.headers.set('X-Response-Time', `${difference}ms`);
+});
+
+server.use(async context => {
+	const path = context.request.url.pathname;
+	const whiteList = ['/index.html', '/favicon.ico', '/style.css', '/script.js'];
+
+	if (whiteList.includes(path)) {
+		await send(context, path, {
+			root: `${Deno.cwd()}/client`
+		});
+	};
 });
 
 server.use(context => {
