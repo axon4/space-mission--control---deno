@@ -18,6 +18,20 @@ await log.setup({
 
 const server = new Application();
 
+server.addEventListener('error', event => {
+	log.error(event.error);
+});
+
+server.use(async (context, next) => {
+	try {
+		await next();
+	} catch (error) {
+		context.throw(500, '500: Internal Server-Error');
+
+		throw error;
+	};
+});
+
 server.use(async (context, next) => {
 	await next();
 
