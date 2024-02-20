@@ -54,7 +54,7 @@ server.use(router.allowedMethods());
 
 server.use(async context => {
 	const path = context.request.url.pathname;
-	const whiteList = ['/index.html', '/favicon.ico', '/style.css', '/script.js'];
+	const whiteList = ['/index.html', '/favicon.ico', '/space.mp4', '/style.css', '/script.js'];
 
 	if (whiteList.includes(path)) {
 		await send(context, path, {
