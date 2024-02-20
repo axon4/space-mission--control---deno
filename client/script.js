@@ -7,7 +7,7 @@ const rocketHeading = 'Rocket'.padEnd(22);
 const targetHeading = 'Destination';
 const customersHeading = 'Customers';
 
-function initValues() {
+function initialise() {
 	const today = new Date().toISOString().split('T')[0];
 	const launchDaySelector = document.getElementById('launch-day');
 
@@ -28,16 +28,45 @@ function loadPlanets() {
 		.catch(console.error);
 };
 
-function loadLaunches() {};
+function loadLaunches() {
+	fetch('/launches')
+		.then(response => response.json())
+		.then(launches2 => {
+			launches = launches2.sort((a, b) => a.flightNumber < b.flightNumber);
+		})
+		.catch(console.error);
+};
 
-function abortLaunch() {};
-
-function submitLaunch() {
-	const flightNumber = launches[launches.length - 1].flightNumber + 1;
+function scheduleLaunch() {
+	const flightNumber = launches[launches.length - 1].flightNumber + 7091;
 	const launchDate = new Date(document.getElementById('launch-day').value);
 	const mission = document.getElementById('mission-name').value;
 	const rocket = document.getElementById('rocket-name').value;
 	const target = document.getElementById('planets-selector').value;
+
+	fetch('/launches', {
+		method: 'POST',
+		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify({
+			flightNumber,
+			launchDate: Math.floor(launchDate / 1000),
+			mission,
+			rocket,
+			target
+		})
+	})
+		.then(() => {
+			document.getElementById('launch-success').hidden = false;
+		})
+		.then(loadLaunches)
+		.catch(console.error);
+};
+
+function abortLaunch(ID) {
+	fetch(`/launches/${ID}`, {method: 'DELETE'})
+		.then(loadLaunches)
+		.then(listUpComing)
+		.catch(console.error);
 };
 
 function listUpComing() {
@@ -90,7 +119,7 @@ function navigate(to) {
 };
 
 window.onload = () => {
-	initValues();
+	initialise();
 	loadLaunches();
 	loadPlanets();
 };
