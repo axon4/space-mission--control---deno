@@ -1,3 +1,4 @@
+import * as log from 'https://deno.land/std@0.95.0/log/mod.ts';
 import { join } from 'https://deno.land/std@0.95.0/path/mod.ts';
 import { parse } from 'https://deno.land/std@0.95.0/encoding/csv.ts';
 import { BufReader } from 'https://deno.land/std@0.95.0/io/bufio.ts';
@@ -33,7 +34,7 @@ async function loadPlanets(): Promise<Planet[]> {
 
 const habitablePlanets = await loadPlanets();
 
-console.log(`${habitablePlanets.length} habitable-planets found`);
+log.info(`${habitablePlanets.length} habitable-planets found`);
 
 export function getPlanets() {
 	return habitablePlanets; 

@@ -1,7 +1,20 @@
+import * as log from 'https://deno.land/std@0.95.0/log/mod.ts';
 import { Application, send } from 'https://deno.land/x/oak@v5.0.0/mod.ts';
 import router from './router.ts';
 
 const PORT = 3001;
+
+await log.setup({
+	loggers: {
+		default: {
+			level: 'DEBUG',
+			handlers: ['console']
+		}
+	},
+	handlers: {
+		console: new log.handlers.ConsoleHandler('DEBUG')
+	}
+});
 
 const server = new Application();
 
@@ -10,7 +23,7 @@ server.use(async (context, next) => {
 
 	const responseTime = context.response.headers.get('X-Response-Time');
 
-	console.log(`${context.request.method} ${context.request.url} ${responseTime}`);
+	log.info(`${context.request.method} ${context.request.url} ${responseTime}`);
 });
 
 server.use(async (context, next) => {
@@ -37,4 +50,7 @@ server.use(async context => {
 	};
 });
 
-if (import.meta.main) await server.listen({port: PORT});
+if (import.meta.main) {
+	log.info(`server listening on port: ${PORT}`);
+	await server.listen({port: PORT});
+};

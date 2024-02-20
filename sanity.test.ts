@@ -1,7 +1,8 @@
+import * as log from 'https://deno.land/std@0.95.0/log/mod.ts';
 import { assertEquals, assertNotEquals } from 'https://deno.land/std@0.60.0/testing/asserts.ts';
 
 Deno.test('shorthand', () => {
-	console.log('shorthand');
+	log.info('shorthand');
 });
 
 Deno.test({
@@ -23,7 +24,7 @@ Deno.test({
 	name: 'operations',
 	sanitizeOps: false,
 	fn() {
-		setTimeout(console.log, 1000);
+		setTimeout(log.info, 1000);
 	}
 });
 
