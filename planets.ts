@@ -5,6 +5,16 @@ import { pick } from 'https://deno.land/x/lodash@4.17.15-es/lodash.js';
 
 type Planet = Record<string, string>;
 
+export function filterHabitablePlanets(planets: Planet[]) {
+	return planets.filter(planet => {
+		const stellarRadius = Number(planet.koi_srad);
+		const stellarMass = Number(planet.koi_smass);
+		const planetaryRadius = Number(planet.koi_prad);
+
+		return planet.koi_disposition === 'CONFIRMED' && stellarRadius > 0.99 && stellarRadius < 1.01 && stellarMass > 0.78 && stellarMass < 1.04 && planetaryRadius > 0.5 && planetaryRadius < 1.5;
+	});
+};
+
 async function loadPlanets(): Promise<Planet[]> {
 	const path = join('.', 'kepler2.csv');
 	const file = await Deno.open(path);
@@ -16,13 +26,7 @@ async function loadPlanets(): Promise<Planet[]> {
 
 	Deno.close(file.rid);
 
-	const planets = result.filter(planet => {
-		const stellarRadius = Number(planet.koi_srad);
-		const stellarMass = Number(planet.koi_smass);
-		const planetaryRadius = Number(planet.koi_prad);
-
-		return planet.koi_disposition === 'CONFIRMED' && stellarRadius > 0.99 && stellarRadius < 1.01 && stellarMass > 0.78 && stellarMass < 1.04 && planetaryRadius > 0.5 && planetaryRadius < 1.5;
-	});
+	const planets = filterHabitablePlanets(result);
 
 	return planets.map(planet => pick(planet, ['kepler_name', 'koi_prad', 'koi_smass', 'koi_srad', 'koi_count', 'koi_steff']));
 };
