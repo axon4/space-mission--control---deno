@@ -15,9 +15,20 @@ function initValues() {
 	launchDaySelector.setAttribute('value', today);
 };
 
-function loadLaunches() {};
+function loadPlanets() {
+	fetch('/planets')
+		.then(response => response.json())
+		.then(planets => {
+			const dropdown = document.getElementById('planets-selector');
 
-function loadPlanets() {};
+			planets.forEach(planet => {
+				dropdown.innerHTML += `<option value='${planet.kepler_name}'>${planet.kepler_name}</option>`;
+			});
+		})
+		.catch(console.error);
+};
+
+function loadLaunches() {};
 
 function abortLaunch() {};
 

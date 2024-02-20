@@ -17,11 +17,11 @@ async function loadPlanets(): Promise<Planet[]> {
 	Deno.close(file.rid);
 
 	const planets = result.filter(planet => {
-		const planetaryRadius = Number(planet.koi_prad);
 		const stellarRadius = Number(planet.koi_srad);
 		const stellarMass = Number(planet.koi_smass);
+		const planetaryRadius = Number(planet.koi_prad);
 
-		return planet.koi_disposition === 'CONFIRMED' && planetaryRadius > 0.5 && planetaryRadius < 1.5 && stellarRadius > 0.99 && stellarRadius < 1.01 && stellarMass > 0.78 && stellarMass < 1.04;
+		return planet.koi_disposition === 'CONFIRMED' && stellarRadius > 0.99 && stellarRadius < 1.01 && stellarMass > 0.78 && stellarMass < 1.04 && planetaryRadius > 0.5 && planetaryRadius < 1.5;
 	});
 
 	return planets.map(planet => pick(planet, ['kepler_name', 'koi_prad', 'koi_smass', 'koi_srad', 'koi_count', 'koi_steff']));
