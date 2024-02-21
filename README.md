@@ -3,6 +3,7 @@
 * schedule interstellar-missions to Kepler-exoplanets, whittled-down from 9,564 objects-of-interest in NASA--ExoPlanet-Archive (National AeroNautics and Space Administration) using data from Kepler-telescope
 * explore upcoming & historical launches from SpaceX
 * pipes data-stream from NASA--ExoPlanet-Archive---data-set into CSV-parser for analysis, tested with Deno, and Dockerised
+* NB: deployment currently broken
 * Sister-Project (Node): ![Space-Mission--Control (Node)](https://github.com/axon4/space-mission--control---node)
 
 ## Stack
