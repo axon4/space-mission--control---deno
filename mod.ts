@@ -1,7 +1,7 @@
 import { Application, log, send } from './dependencies.ts';
 import router from './router.ts';
 
-const PORT = 3001;
+const PORT = Number(Deno.env.get('PORT')) || 3001;
 
 await log.setup({
 	loggers: {
