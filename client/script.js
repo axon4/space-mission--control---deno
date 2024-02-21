@@ -1,4 +1,5 @@
 let launches;
+let latestFlightNumber = 7091;
 
 const numberHeading = 'ID'.padStart(5);
 const dateHeading = 'Date'.padEnd(15);
@@ -38,7 +39,7 @@ function loadLaunches() {
 };
 
 function scheduleLaunch() {
-	const flightNumber = launches[launches.length - 1].flightNumber + 7091;
+	const flightNumber = ++latestFlightNumber;
 	const launchDate = new Date(document.getElementById('launch-day').value);
 	const mission = document.getElementById('mission-name').value;
 	const rocket = document.getElementById('rocket-name').value;
