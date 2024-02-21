@@ -50,7 +50,7 @@ router.get('/launches/:ID', context => {
 });
 
 router.post('/launches', async context => {
-	const body = (await context.request.body()).value;
+	const body = await context.request.body().value;
 
 	scheduleLaunch(body);
 
