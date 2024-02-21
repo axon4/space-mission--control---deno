@@ -14,6 +14,7 @@ await log.setup({
 		console: new log.handlers.ConsoleHandler('DEBUG')
 	}
 });
+log.debug('setting-up logger');
 
 const server = new Application();
 
